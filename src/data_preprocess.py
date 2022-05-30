@@ -1,15 +1,11 @@
 # import packages
 
-
 # import raw data
-
-
 
 # import data config 
 #cat variable
 #numerical variable
 #label column
-
 
 # clean information
 

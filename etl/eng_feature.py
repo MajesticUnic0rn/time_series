@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.base import BaseEstimator, TransformerMixin
 
-# Lag/Shifted Features
+# Lag/Shifted Features # lag feature by specific "target"?
 def lag_features(df, lags):
     for lag in lags:
         df['OnRent_lag_' + str(lag)] = df.groupby(["Division", "ProductCategory_Nbl"])['OnRent'].transform(
