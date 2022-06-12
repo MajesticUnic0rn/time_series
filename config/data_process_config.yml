@@ -1,0 +1,23 @@
+preprocess:
+  stage : dev
+  stage_dev:
+    file_type: csv
+    file_location: "../data/FleetForecasting_Top100ProductSubCategory_WithIHSData_Weather_BYDay_V2.csv"
+    label_column: 'OnRent'
+    time_stamp_column: 'EffectiveDate'
+    categorical_feature: ['eq_nm','Division','RegionName'] 
+    ewm_alpha: [0.95, 0.9, 0.8, 0.7, 0.5]
+    ewm_lags: [91, 98, 105, 112, 180, 270, 365]
+    lags: [91, 98, 105, 112, 119, 126, 182, 364]
+    split_date: '2019-5-20'
+    output_location: "../data/"
+  stage_prod:
+    file_type: csv
+    file_location: "../data/FleetForecasting_Top100ProductSubCategory_WithIHSData_Weather_BYDay_V2.csv"
+    label_column: 'OnRent'
+    time_stamp_column: 'EffectiveDate'
+    categorical_feature: ['eq_nm','Division','RegionName']
+    ewm_alpha: [0.95, 0.9, 0.8, 0.7, 0.5]
+    ewm_lags: [91, 98, 105, 112, 180, 270, 365]
+    lags: [91, 98, 105, 112, 119, 126, 182, 364]
+    output_location: "../data/"

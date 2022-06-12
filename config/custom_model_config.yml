@@ -1,0 +1,18 @@
+experiment_name: 'On Rent Time Series'
+run_tag: 'custom lgbm training'
+lgbm_model: 
+  model_param:
+      objective: "regression"
+      metric: "rmse"
+      verbosity: -1,
+      boosting_type: "gbdt"
+      seed: 42
+      linear_tree: False
+      learning_rate: .15
+      min_child_samples: 5
+      num_leaves: 31
+      num_iterations: 50
+  features: []
+  label_column: 'OnRent'
+
+  

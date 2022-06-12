@@ -3,12 +3,14 @@ import logging.config
 import codecs
 import yaml
 
+CONFIG_FILE="../config/log_config.yml" # replace config file with constant
+
 def get_custom_logger():
+
     logger = logging.getLogger()
-    config_file = "./util/log_config.yml" # hard coded yaml should I change?
-    logger.info("config file: %s", config_file)
+    logger.info("config file: %s", CONFIG_FILE)
     # We use codecs.open because it is equivalent to Python 3 open()
-    with codecs.open(config_file, "r", encoding="utf-8") as fd:
+    with codecs.open(CONFIG_FILE, "r", encoding="utf-8") as fd:
         log_config = yaml.full_load(fd.read())
     logging.config.dictConfig(log_config)
     ch = logging.StreamHandler()

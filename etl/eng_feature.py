@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.base import BaseEstimator, TransformerMixin
 
-# Lag/Shifted Features # lag feature by specific "target"?
+# Lag/Shifted Features
 def lag_features(df, lags):
     for lag in lags:
         df['OnRent_lag_' + str(lag)] = df.groupby(["Division", "ProductCategory_Nbl"])['OnRent'].transform(
@@ -52,9 +52,12 @@ def create_time_features(df, target=None):
 
 def eq_nm_create(df):
     cols = ['ProductCategory_Nbl', 'ProductCategory_Desc']
-    df['ProductCategory_Desc'] = df['ProductCategory_Desc'].str.replace(r"[\"\',< ]", '')
+    df['ProductCategory_Desc'] = clean_string(df['ProductCategory_Desc'])
     df['eq_nm'] = df[cols].apply(lambda row: '_'.join(row.values.astype(str)), axis=1)
     return df
+
+def clean_string(input_series):
+    return input_series.str.replace(r"[\"\',< ]", '')
 
 def check_df(df, head=5, tail=5, quan=False):
     print("##################### Shape #####################")
@@ -71,3 +74,13 @@ def check_df(df, head=5, tail=5, quan=False):
     if quan:
         print("##################### Quantiles #####################")
         print(df.quantile([0, 0.05, 0.50, 0.95, 0.99, 1]).T)
+
+# class PrecipitationTransformer(BaseEstimator, TransformerMixin):
+#     def fit(self, X, y):
+#         return self
+
+#     def transform(self, X, y=None):
+#         X_new = X.copy()
+#         X_new["low_precipitation"] = [int(x < 12)
+#                                       for x in X_new["annual_precipitation"]]
+#         return X_new

@@ -1,0 +1,1 @@
+CONFIG_FILE="./config/log_config.yml"

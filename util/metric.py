@@ -15,7 +15,7 @@ def _percentage_error(actual: np.ndarray, predicted: np.ndarray):
 
     Note: result is NOT multiplied by 100
     """
-    return _error(actual, predicted) / (actual + EPSILON)
+    return _error(actual, predicted) / (actual + EPSILON) # add epsilon to actual reverted
 
 
 def _naive_forecasting(actual: np.ndarray, seasonality: int = 1):
@@ -132,7 +132,7 @@ def mape(actual: np.ndarray, predicted: np.ndarray):
 
     Note: result is NOT multiplied by 100
     """
-    return np.mean(np.abs(_percentage_error(actual, predicted)))
+    return np.mean(np.abs(_percentage_error(actual, predicted))) * 100
 
 
 def mdape(actual: np.ndarray, predicted: np.ndarray):
@@ -338,7 +338,7 @@ METRICS = {
 
 
 def evaluate(
-    actual: np.ndarray, predicted: np.ndarray, metrics=("mae", "rmse", "mape","smape", "r2")
+    actual: np.ndarray, predicted: np.ndarray, metrics=("mse","mae", "rmse", "mape","smape", "r2")
 ):
     results = {}
     for name in metrics:
